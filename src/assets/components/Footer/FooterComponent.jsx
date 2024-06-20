@@ -4,20 +4,13 @@ const FooterComponent = () => {
 
   const [changingBg, setChangingBg] = useState("black");
 
+  // changing background color //
   useEffect(() => {
     const changingEffect = setInterval(() => {
-      setChangingBg(changingBg === "grey" ? "black" : "grey");
+      setChangingBg(changingBg => changingBg === "#75bee7" ? "#0a794e" : "#75bee7");
     }, 5000);
-
     return () => clearInterval(changingEffect);
-  },[]);
-  useEffect(() => {
-    const changingEffect = setInterval(() => {
-      setChangingBg(changingBg === "grey" ? "black" : "grey");
-    }, 5000);
-
-    return () => clearInterval(changingEffect);
-  },[changingBg]);
+  },[]); //passo un array vuoto così da attivare useEffect solo una volta al mounting della page
 
   return (
     <footer style={{

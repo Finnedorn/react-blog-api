@@ -3,30 +3,30 @@ import { useState, useEffect } from "react";
 
 const MainComponent = ({posts}) => {
 
-  const [changingBg, setChangingBg] = useState("grey");
+  const bgstart = "url('../../img/blog-bg.jpg')";
+
+  const bgend = "url('../../img/create-bg-post.jpg')";
+
+  const [changingBg, setChangingBg] = useState(bgstart);
 
 
   // changing background color //
   useEffect(() => {
     const changingEffect = setInterval(() => {
-      setChangingBg(changingBg === "grey" ? "black" : "grey");
+      setChangingBg(changingBg => changingBg === bgstart ? bgend : bgstart);
     }, 5000);
     return () => clearInterval(changingEffect);
   },[]); //passo un array vuoto così da attivare useEffect solo una volta al mounting della page
-  useEffect(() => {
-    const changingEffect = setInterval(() => {
-      setChangingBg(changingBg === "grey" ? "black" : "grey");
-    }, 5000);
-    return () => clearInterval(changingEffect);
-  },[changingBg]); //al cambiamento di changingBg (del primo useEffect) attivo il secondo useEffect 
+   
 
   return (
     <main
       className="container-fluid main"
       style={{
-        backgroundColor: changingBg,
+        backgroundImage: changingBg,
+        backgroundSize: "cover",
         padding: "20px",
-        transition: "background-color 2s ease-in-out",
+        transition: "background-image 2s ease-in-out",
       }}
     >
       <h1
@@ -34,7 +34,7 @@ const MainComponent = ({posts}) => {
           textAlign: "center",
           padding: "10px 0px",
           fontSize: "2.5rem",
-          color: "white",
+          color: "#0a794e",
         }}
       >
         Il mio Blog
